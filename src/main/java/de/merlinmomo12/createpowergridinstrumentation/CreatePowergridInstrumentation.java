@@ -34,11 +34,12 @@ public class CreatePowergridInstrumentation {
 
     public CreatePowergridInstrumentation(IEventBus modBus) {
         REGISTRATE.registerEventListeners(modBus);
-        /*
+
 
         AllCreativeModeTabs.register();
 
         REGISTRATE.setCreativeTab(AllCreativeModeTabs.MAIN_TAB);
+        /*
         registerLangPartials();
         registerPonderLang();
 
