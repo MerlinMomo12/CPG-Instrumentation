@@ -1,5 +1,6 @@
 package de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base;
 
+import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import de.merlinmomo12.createpowergridinstrumentation.content.electricity.sim.CurrentSinkWire;
 
 import net.minecraft.core.BlockPos;
@@ -10,8 +11,11 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import org.patryk3211.powergrid.electricity.base.ElectricBlockEntity;
 
+import java.util.List;
+
 
 public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity {
+
     protected CurrentSinkWire wire;
     protected float lowValue = 4f;
     protected float highValue = 20f;
@@ -26,7 +30,9 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
             BlockPos pos,
             BlockState state) {
 
+
         super(type, pos, state);
+        System.out.println("BlockEntity erstellt");
     }
     public float getLowValue() {
         return lowValue;
@@ -44,6 +50,12 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
     public void setHighValue(float highValue) {
         this.highValue = highValue;
         setChanged();
+    }
+    @Override
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
+        super.addBehaviours(behaviours);
+
+        behaviours.add(new TransmitterMenuBehaviour(this));
     }
 
     @Override

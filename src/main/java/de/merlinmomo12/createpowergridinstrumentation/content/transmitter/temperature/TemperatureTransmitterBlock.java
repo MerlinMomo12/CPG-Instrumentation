@@ -2,6 +2,8 @@ package de.merlinmomo12.createpowergridinstrumentation.content.transmitter.tempe
 
 import com.simibubi.create.foundation.block.IBE;
 
+import de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base.AbstractTransmitterBlock;
+import de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base.AbstractTransmitterBlockEntity;
 import de.merlinmomo12.createpowergridinstrumentation.registry.AllBlockEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -30,7 +32,7 @@ import org.patryk3211.powergrid.electricity.base.terminals.BlockStateTerminalCol
 
 
 public class TemperatureTransmitterBlock
-        extends ElectricBlock
+        extends AbstractTransmitterBlock
         implements IBE<TemperatureTransmitterBlockEntity> {
 
 
@@ -202,27 +204,9 @@ public class TemperatureTransmitterBlock
         };
     }
 
-    @Override
-    protected ItemInteractionResult useItemOn(
-            ItemStack stack,
-            BlockState state,
-            Level level,
-            BlockPos pos,
-            Player player,
-            InteractionHand hand,
-            BlockHitResult hit) {
-        /*
 
-        if (level.isClientSide) {
-            PacketDistributor.sendToServer(
-                    new TestPacket(pos, 123.45f)
-            );
-        }
 
-         */
 
-        return ItemInteractionResult.SUCCESS;
-    }
 
 
 

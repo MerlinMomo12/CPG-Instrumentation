@@ -12,10 +12,12 @@ public class AllCreativeModeTabs {
             CreatePowergridInstrumentation.REGISTRATE.defaultCreativeTab("main_tab", builder ->
                     builder
                             //.title(Component.translatable(Lang.CREATIVE_TAB))
-                            .icon(() -> new ItemStack(Items.HONEYCOMB))  // Replace with your own icon
+                            .icon(() -> new ItemStack(AllBlocks.TEMPERATURE_TRANSMITTER))  // Replace with your own icon
                             .displayItems((parameters, output) -> {
+                        /*
                         output.accept(Items.DIAMOND);
                         output.accept(Items.DIAMOND_BOOTS);
+                         */
                     })
                             .build()
 
