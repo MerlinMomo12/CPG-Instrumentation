@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "createpowergridinstrumentation:block/temperature_transmitter"
+    },
+    "facing=south": {
+      "model": "createpowergridinstrumentation:block/temperature_transmitter",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "createpowergridinstrumentation:block/temperature_transmitter",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "createpowergridinstrumentation:block/temperature_transmitter",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "createpowergridinstrumentation:block/temperature_transmitter",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "createpowergridinstrumentation:block/temperature_transmitter",
+      "x": 90
+    }
+  }
+}

@@ -1,9 +1,12 @@
 package de.merlinmomo12.createpowergridinstrumentation;
 
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
 import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
+import de.merlinmomo12.createpowergridinstrumentation.registry.AllBlockEntityTypes;
+import de.merlinmomo12.createpowergridinstrumentation.registry.AllCreativeModeTabs;
 import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -39,6 +42,8 @@ public class CreatePowergridInstrumentation {
         AllCreativeModeTabs.register();
 
         REGISTRATE.setCreativeTab(AllCreativeModeTabs.MAIN_TAB);
+        AllBlocks.register();
+        AllBlockEntityTypes.register();
         /*
         registerLangPartials();
         registerPonderLang();
@@ -47,8 +52,7 @@ public class CreatePowergridInstrumentation {
         /*
         AllItems.register();
         AllDisplaySources.register();
-        AllBlocks.register();
-        AllBlockEntityTypes.register();
+
 
          */
 

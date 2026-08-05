@@ -1,7 +1,7 @@
-package de.merlinmomo12.createpowergridinstrumentation;
+package de.merlinmomo12.createpowergridinstrumentation.registry;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.network.chat.Component;
+import de.merlinmomo12.createpowergridinstrumentation.CreatePowergridInstrumentation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
