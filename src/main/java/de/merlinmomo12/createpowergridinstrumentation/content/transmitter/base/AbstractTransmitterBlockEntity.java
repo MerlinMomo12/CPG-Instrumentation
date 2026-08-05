@@ -1,20 +1,23 @@
 package de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base;
 
-import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import de.merlinmomo12.createpowergridinstrumentation.content.electricity.sim.CurrentSinkWire;
 
+import de.merlinmomo12.createpowergridinstrumentation.registry.AllMenuTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 import org.patryk3211.powergrid.electricity.base.ElectricBlockEntity;
 
-import java.util.List;
 
-
-public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity {
+public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity implements MenuProvider {
 
     protected CurrentSinkWire wire;
     protected float lowValue = 4f;
@@ -52,12 +55,25 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
         setChanged();
     }
     @Override
-    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-        super.addBehaviours(behaviours);
-
-        behaviours.add(new TransmitterMenuBehaviour(this));
+    public Component getDisplayName() {
+        return Component.literal("Transmitter");
     }
 
+
+    @Override
+    public AbstractContainerMenu createMenu(
+            int id,
+            Inventory inventory,
+            Player player
+    ) {
+
+        return new TransmitterMenu(
+                AllMenuTypes.TRANSMITTER.get(),
+                id,
+                inventory,
+                this
+        );
+    }
     @Override
     protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
         super.write(tag, registries, clientPacket);
