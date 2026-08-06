@@ -20,8 +20,12 @@ import org.patryk3211.powergrid.electricity.base.ElectricBlockEntity;
 public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity implements MenuProvider {
 
     protected CurrentSinkWire wire;
-    protected float lowValue = 4f;
-    protected float highValue = 20f;
+    protected TransmitterUnit outputUnit;
+
+    protected abstract double getMeasurement();
+
+    protected abstract TransmitterUnit getMeasurementUnit();
+
     public abstract TransmitterType getTransmitterType();
 
 
@@ -35,25 +39,11 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
 
 
         super(type, pos, state);
+        outputUnit = TransmitterUnit.FAHRENHEIT;
         System.out.println("BlockEntity erstellt");
     }
-    public float getLowValue() {
-        return lowValue;
-    }
 
-    public void setLowValue(float lowValue) {
-        this.lowValue = lowValue;
-        setChanged();
-    }
 
-    public float getHighValue() {
-        return highValue;
-    }
-
-    public void setHighValue(float highValue) {
-        this.highValue = highValue;
-        setChanged();
-    }
     @Override
     public Component getDisplayName() {
         return Component.literal("Transmitter");
@@ -74,34 +64,34 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
                 this
         );
     }
-    @Override
-    protected void write(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
-        super.write(tag, registries, clientPacket);
 
-        tag.putFloat("LowValue", lowValue);
-        tag.putFloat("HighValue", highValue);
-
-
-    }
-    @Override
-    protected void read(CompoundTag tag, HolderLookup.Provider registries, boolean clientPacket) {
-        super.read(tag, registries, clientPacket);
-
-        lowValue = tag.getFloat("LowValue");
-        highValue = tag.getFloat("HighValue");
-
-    }
     @Override
     public void tick() {
         super.tick();
 
-        if (level != null && !level.isClientSide && level.getGameTime() % 100 == 0) {
-            level.players().forEach(player ->
-                    player.sendSystemMessage(getTransmitterType().getName())
-            );
-        }
-    }
+        if(level == null || level.isClientSide)
+            return;
 
+
+        // Rohwert vom Sensor
+        double measuredValue = getMeasurement();
+
+
+        // Umrechnung von Sensor-Einheit zu gewünschter Einheit
+        double convertedValue =
+                getMeasurementUnit()
+                        .convertTo(
+                                measuredValue,
+                                outputUnit
+                        );
+        wire.setTargetCurrent(convertedValue/1000.0f);
+
+
+
+        // Hier später:
+        // convertedValue -> TransmitterMath -> mA
+
+    }
 
 
 
