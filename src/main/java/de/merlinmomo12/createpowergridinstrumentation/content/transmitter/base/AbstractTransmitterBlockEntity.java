@@ -21,6 +21,9 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
 
     protected CurrentSinkWire wire;
     protected TransmitterUnit outputUnit;
+    protected double lowerRange;
+    protected double upperRange;
+
 
     protected abstract double getMeasurement();
 
@@ -39,7 +42,9 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
 
 
         super(type, pos, state);
-        outputUnit = TransmitterUnit.FAHRENHEIT;
+        lowerRange = 0.0;
+        upperRange = 100.0;
+        outputUnit = TransmitterUnit.CELSIUS;
         System.out.println("BlockEntity erstellt");
     }
 
@@ -84,7 +89,16 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
                                 measuredValue,
                                 outputUnit
                         );
-        wire.setTargetCurrent(convertedValue/1000.0f);
+        System.out.println(measuredValue);
+        double currentAmpere =
+                de.merlinmomo12.createpowergridinstrumentation.content.transmitter.math.TransmitterMath.calculateCurrent(
+                        convertedValue,
+                        lowerRange,
+                        upperRange
+                );
+        System.out.println(currentAmpere);
+
+        wire.setTargetCurrent(currentAmpere/1000.0f);
 
 
 
