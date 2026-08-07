@@ -1,5 +1,6 @@
 package de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base;
 
+import net.createmod.catnip.gui.ScreenOpener;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -17,24 +18,29 @@ public class AbstractTransmitterBlock extends ElectricBlock {
     }
 
     @Override
-    public InteractionResult use(
+    protected InteractionResult useWithoutItem(
             BlockState state,
             Level level,
             BlockPos pos,
             Player player,
-            InteractionHand hand,
             BlockHitResult hit
     ) {
+        if (level.isClientSide) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
 
-        if(!level.isClientSide) {
-
-            if(level.getBlockEntity(pos) instanceof AbstractTransmitterBlockEntity be) {
-
-                player.openMenu(be);
+            if (blockEntity instanceof AbstractTransmitterBlockEntity transmitter) {
+                ScreenOpener.open(new TransmitterScreen(transmitter));
             }
 
+            return InteractionResult.SUCCESS;
         }
 
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+
+        if (!(blockEntity instanceof AbstractTransmitterBlockEntity transmitter))
+            return InteractionResult.PASS;
+
+        // Hier wird später der Screen geöffnet
         return InteractionResult.SUCCESS;
     }
 

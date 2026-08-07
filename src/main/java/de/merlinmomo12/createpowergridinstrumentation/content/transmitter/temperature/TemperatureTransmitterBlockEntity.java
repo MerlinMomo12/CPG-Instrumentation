@@ -5,9 +5,14 @@ import de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base.A
 import de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base.TransmitterType;
 import de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base.TransmitterUnit;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import org.jetbrains.annotations.Nullable;
 import org.patryk3211.powergrid.electricity.base.ThermalBehaviour;
 
 
@@ -67,4 +72,14 @@ public class TemperatureTransmitterBlockEntity extends AbstractTransmitterBlockE
         return TransmitterType.TEMPERATURE;
     }
 
+
+    @Override
+    public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
+        return null;
+    }
+
+    @Override
+    public Component getDisplayName() {
+        return null;
+    }
 }

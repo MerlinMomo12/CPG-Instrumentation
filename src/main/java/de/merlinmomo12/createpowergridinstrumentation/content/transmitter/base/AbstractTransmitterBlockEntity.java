@@ -35,6 +35,8 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
 
 
 
+
+
     public AbstractTransmitterBlockEntity(
             BlockEntityType<?> type,
             BlockPos pos,
@@ -49,26 +51,10 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
     }
 
 
-    @Override
-    public Component getDisplayName() {
-        return Component.literal("Transmitter");
-    }
 
 
-    @Override
-    public AbstractContainerMenu createMenu(
-            int id,
-            Inventory inventory,
-            Player player
-    ) {
 
-        return new TransmitterMenu(
-                AllMenuTypes.TRANSMITTER.get(),
-                id,
-                inventory,
-                this
-        );
-    }
+
 
     @Override
     public void tick() {
