@@ -2,6 +2,9 @@ package de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base;
 
 import net.minecraft.network.chat.Component;
 
+import java.util.Arrays;
+import java.util.List;
+
 
 public enum TransmitterType {
 
@@ -39,5 +42,10 @@ public enum TransmitterType {
         return Component.translatable(
                 translationKey
         );
+    }
+    public List<TransmitterUnit> getUnits() {
+        return Arrays.stream(TransmitterUnit.values())
+                .filter(unit -> unit.getType() == this)
+                .toList();
     }
 }

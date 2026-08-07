@@ -1,4 +1,4 @@
-package de.merlinmomo12.createpowergridinstrumentation.content.transmitter.math;
+package de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base;
 
 public final class TransmitterMath {
 
@@ -31,11 +31,14 @@ public final class TransmitterMath {
             double upperRange
     ) {
 
+        /*
         if (upperRange <= lowerRange) {
+
             throw new IllegalArgumentException(
                     "UpperRange muss größer als LowerRange sein."
             );
         }
+         */
 
         double percentage =
                 (measuredValue - lowerRange)

@@ -71,6 +71,15 @@ public class TemperatureTransmitterBlockEntity extends AbstractTransmitterBlockE
     public TransmitterType getTransmitterType() {
         return TransmitterType.TEMPERATURE;
     }
+    @Override
+    protected double getDefaultLowerRange() {
+        return -50;
+    }
+
+    @Override
+    protected double getDefaultUpperRange() {
+        return 150;
+    }
 
 
     @Override
