@@ -309,7 +309,7 @@ public class TransmitterScreen extends AbstractSimiScreen {
                     font,
                     String.valueOf(lowerRangeInput.getState()),
                     x + 63,
-                    y + 52,
+                    y + 28,
                     0xFFFFFF
             );
         }
@@ -320,7 +320,7 @@ public class TransmitterScreen extends AbstractSimiScreen {
                     font,
                     String.valueOf(upperRangeInput.getState()),
                     x + 63,
-                    y + 28,
+                    y + 52,
                     0xFFFFFF
             );
         }
