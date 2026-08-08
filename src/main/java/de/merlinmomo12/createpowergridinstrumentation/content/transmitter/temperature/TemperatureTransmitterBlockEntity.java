@@ -82,7 +82,7 @@ public class TemperatureTransmitterBlockEntity extends AbstractTransmitterBlockE
     }
     @Override
     protected TransmitterUnit getDefaultOutputUnit() {
-        return TransmitterUnit.FAHRENHEIT;
+        return TransmitterUnit.CELSIUS;
     }
 
 

@@ -6,20 +6,26 @@ import com.simibubi.create.foundation.gui.widget.IconButton;
 import com.simibubi.create.foundation.gui.widget.ScrollInput;
 import com.simibubi.create.foundation.gui.widget.SelectionScrollInput;
 
+import de.merlinmomo12.createpowergridinstrumentation.CreatePowergridInstrumentation;
 import net.createmod.catnip.gui.AbstractSimiScreen;
 import net.createmod.catnip.gui.element.GuiGameElement;
 
 import net.createmod.catnip.platform.CatnipServices;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.List;
 
 public class TransmitterScreen extends AbstractSimiScreen {
 
-    private static final int WIDTH = 176;
+    private static final int WIDTH = 181;
     private static final int HEIGHT = 166;
+    private static final ResourceLocation TEXTURE =
+            CreatePowergridInstrumentation.asResource(
+                    "textures/gui/transmitter.png"
+            );
 
     private final AbstractTransmitterBlockEntity blockEntity;
 
@@ -114,10 +120,10 @@ public class TransmitterScreen extends AbstractSimiScreen {
         }
 
         outputUnitInput = (SelectionScrollInput) new SelectionScrollInput(
-                guiLeft + 100,
+                guiLeft + 117,
                 guiTop + 23,
-                52,
-                42
+                42,
+                17
         )
                 .forOptions(unitNames)
                 .titled(Component.literal("Output Unit"))
@@ -131,10 +137,10 @@ public class TransmitterScreen extends AbstractSimiScreen {
         // =========================
 
         lowerRangeInput = new ScrollInput(
-                guiLeft + 10,
-                guiTop + 60,
-                70,
-                18
+                guiLeft + 57,
+                guiTop + 23,
+                47,
+                17
         )
                 .withRange(-10000, 10000)
                 .withStepFunction(input ->
@@ -151,10 +157,10 @@ public class TransmitterScreen extends AbstractSimiScreen {
         // =========================
 
         upperRangeInput = new ScrollInput(
-                guiLeft + 95,
-                guiTop + 60,
-                70,
-                18
+                guiLeft + 57,
+                guiTop + 47,
+                47,
+                17
         )
                 .withRange(-10000, 10000)
                 .withStepFunction(input ->
@@ -171,8 +177,10 @@ public class TransmitterScreen extends AbstractSimiScreen {
 // =========================
 
         confirmButton = new IconButton(
-                guiLeft + WIDTH - 33,
-                guiTop + HEIGHT - 24,
+                guiLeft + 149,
+                guiTop + 79,
+                17,
+                17,
                 AllIcons.I_CONFIRM
         );
 
@@ -227,17 +235,20 @@ public class TransmitterScreen extends AbstractSimiScreen {
         int x = guiLeft;
         int y = guiTop;
 
-
         // =========================
-        // Hintergrund
+        // GUI Hintergrund
         // =========================
 
-        graphics.fill(
-                x,
-                y,
-                x + WIDTH,
-                y + HEIGHT,
-                0xFF222222
+        graphics.blit(
+                TEXTURE,
+                x ,
+                y ,
+                0,
+                0,
+                WIDTH,
+                HEIGHT,
+                256,
+                256
         );
 
 
@@ -252,7 +263,7 @@ public class TransmitterScreen extends AbstractSimiScreen {
                 font,
                 title,
                 x + WIDTH / 2 - font.width(title) / 2,
-                y + 8,
+                y + 4,
                 0xFFFFFF
         );
 
@@ -261,13 +272,7 @@ public class TransmitterScreen extends AbstractSimiScreen {
         // Output Unit
         // =========================
 
-        graphics.drawString(
-                font,
-                "Output Unit",
-                x + 10,
-                y + 29,
-                0xFFFFFF
-        );
+
 
         if (outputUnitInput != null &&
                 !availableUnits.isEmpty()) {
@@ -284,33 +289,14 @@ public class TransmitterScreen extends AbstractSimiScreen {
                 graphics.drawString(
                         font,
                         selectedUnit.getSymbol(),
-                        x + 105,
-                        y + 29,
+                        x + 130,
+                        y + 28,
                         0xFFFFFF
                 );
             }
         }
 
 
-        // =========================
-        // Range Überschriften
-        // =========================
-
-        graphics.drawString(
-                font,
-                "Lower Range",
-                x + 10,
-                y + 53,
-                0xFFFFFF
-        );
-
-        graphics.drawString(
-                font,
-                "Upper Range",
-                x + 95,
-                y + 53,
-                0xFFFFFF
-        );
 
 
         // =========================
@@ -322,8 +308,8 @@ public class TransmitterScreen extends AbstractSimiScreen {
             graphics.drawString(
                     font,
                     String.valueOf(lowerRangeInput.getState()),
-                    x + 15,
-                    y + 70,
+                    x + 63,
+                    y + 52,
                     0xFFFFFF
             );
         }
@@ -333,42 +319,18 @@ public class TransmitterScreen extends AbstractSimiScreen {
             graphics.drawString(
                     font,
                     String.valueOf(upperRangeInput.getState()),
-                    x + 100,
-                    y + 70,
+                    x + 63,
+                    y + 28,
                     0xFFFFFF
             );
         }
 
 
-        // =========================
-        // Range Einheit
-        // =========================
 
-        if (outputUnitInput != null &&
-                !availableUnits.isEmpty()) {
-
-            int selectedIndex =
-                    outputUnitInput.getState();
-
-            if (selectedIndex >= 0 &&
-                    selectedIndex < availableUnits.size()) {
-
-                TransmitterUnit selectedUnit =
-                        availableUnits.get(selectedIndex);
-
-                graphics.drawString(
-                        font,
-                        selectedUnit.getSymbol(),
-                        x + 68,
-                        y + 70,
-                        0xFFAAAAAA
-                );
-            }
-        }
 
 
         // =========================
-        // Großes Transmitter-Item
+        // Transmitter Item
         // =========================
 
         if (renderedItem != null) {

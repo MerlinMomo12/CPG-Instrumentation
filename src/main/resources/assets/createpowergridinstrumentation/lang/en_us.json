@@ -1,3 +1,14 @@
 {
 
+  "block.createpowergridinstrumentation.temperature_transmitter": "Temperature Transmitter",
+
+
+
+
+  "creativetab.mcreatepowergridinstrumentation.instrument_item_tab": "CPG: Instrumentation",
+  "transmitter.type.temperature": "Temperature Transmitter",
+  "block.createpowergridinstrumentation.temperature_transmitter.tooltip.summary": "Converts a Temperature into a Current-Throughput"
+
+
+
 }

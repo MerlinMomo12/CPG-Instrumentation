@@ -39,14 +39,15 @@ public class CreatePowergridInstrumentation {
 
     public CreatePowergridInstrumentation(IEventBus modBus) {
         REGISTRATE.registerEventListeners(modBus);
+        AllCreativeModeTabs.register();
+
+        REGISTRATE.setCreativeTab(AllCreativeModeTabs.MAIN_TAB);
 
         AllBlocks.register();
         AllBlockEntityTypes.register();
         AllPackets.register();
 
-        AllCreativeModeTabs.register();
 
-        REGISTRATE.setCreativeTab(AllCreativeModeTabs.MAIN_TAB);
 
         modBus.addListener(this::onCommonSetup);
         modBus.addListener(this::onClientSetup);
