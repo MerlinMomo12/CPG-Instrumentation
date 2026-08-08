@@ -2,15 +2,13 @@ package de.merlinmomo12.createpowergridinstrumentation.content.transmitter.base;
 
 import de.merlinmomo12.createpowergridinstrumentation.content.electricity.sim.CurrentSinkWire;
 
-import de.merlinmomo12.createpowergridinstrumentation.registry.AllMenuTypes;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
+
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
+
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -37,6 +35,9 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
     protected double getDefaultUpperRange() {
         return 100.0;
     }
+    protected TransmitterUnit getDefaultOutputUnit() {
+        return null;
+    }
 
 
 
@@ -47,14 +48,17 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
     public AbstractTransmitterBlockEntity(
             BlockEntityType<?> type,
             BlockPos pos,
-            BlockState state) {
-
-
+            BlockState state
+    ) {
         super(type, pos, state);
-        lowerRange = 0.0;
-        upperRange = 100.0;
-        outputUnit = TransmitterUnit.CELSIUS;
-        System.out.println("BlockEntity erstellt");
+
+        lowerRange = getDefaultLowerRange();
+        upperRange = getDefaultUpperRange();
+        outputUnit = getDefaultOutputUnit();
+
+        System.out.println(
+                "BlockEntity erstellt: " + outputUnit
+        );
     }
     public TransmitterUnit getOutputUnit() {
         return outputUnit;
@@ -89,11 +93,14 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
     ) {
         super.read(tag, registries, clientPacket);
 
+
         if (tag.contains("OutputUnit")) {
             outputUnit = TransmitterUnit.valueOf(
                     tag.getString("OutputUnit")
             );
         }
+
+
 
         if(tag.contains("LowerRange"))
             lowerRange = tag.getDouble("LowerRange");

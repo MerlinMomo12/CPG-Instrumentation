@@ -80,6 +80,10 @@ public class TemperatureTransmitterBlockEntity extends AbstractTransmitterBlockE
     protected double getDefaultUpperRange() {
         return 150;
     }
+    @Override
+    protected TransmitterUnit getDefaultOutputUnit() {
+        return TransmitterUnit.FAHRENHEIT;
+    }
 
 
     @Override

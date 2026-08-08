@@ -65,7 +65,7 @@ Example mod description.
 [[dependencies.createpowergridinstrumentation]]
 modId="create"
 type="required"
-versionRange="[6.0.10,6.1.0)"
+versionRange="[6.0.10]"
 ordering="NONE"
 side="BOTH"
 

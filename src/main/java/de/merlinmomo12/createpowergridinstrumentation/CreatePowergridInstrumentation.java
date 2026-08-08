@@ -7,7 +7,7 @@ import com.simibubi.create.foundation.item.KineticStats;
 import com.simibubi.create.foundation.item.TooltipModifier;
 import de.merlinmomo12.createpowergridinstrumentation.registry.AllBlockEntityTypes;
 import de.merlinmomo12.createpowergridinstrumentation.registry.AllCreativeModeTabs;
-import de.merlinmomo12.createpowergridinstrumentation.registry.AllMenuTypes;
+
 import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -39,24 +39,12 @@ public class CreatePowergridInstrumentation {
     public CreatePowergridInstrumentation(IEventBus modBus) {
         REGISTRATE.registerEventListeners(modBus);
 
+        AllBlocks.register();
+        AllBlockEntityTypes.register();
 
         AllCreativeModeTabs.register();
 
         REGISTRATE.setCreativeTab(AllCreativeModeTabs.MAIN_TAB);
-        AllBlocks.register();
-        AllBlockEntityTypes.register();
-        AllMenuTypes.register();
-        /*
-        registerLangPartials();
-        registerPonderLang();
-
-         */
-        /*
-        AllItems.register();
-        AllDisplaySources.register();
-
-
-         */
 
         modBus.addListener(this::onCommonSetup);
         modBus.addListener(this::onClientSetup);
