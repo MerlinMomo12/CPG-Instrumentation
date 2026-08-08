@@ -8,6 +8,7 @@ import com.simibubi.create.foundation.item.TooltipModifier;
 import de.merlinmomo12.createpowergridinstrumentation.registry.AllBlockEntityTypes;
 import de.merlinmomo12.createpowergridinstrumentation.registry.AllCreativeModeTabs;
 
+import de.merlinmomo12.createpowergridinstrumentation.registry.AllPackets;
 import net.createmod.catnip.lang.FontHelper;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -41,6 +42,7 @@ public class CreatePowergridInstrumentation {
 
         AllBlocks.register();
         AllBlockEntityTypes.register();
+        AllPackets.register();
 
         AllCreativeModeTabs.register();
 

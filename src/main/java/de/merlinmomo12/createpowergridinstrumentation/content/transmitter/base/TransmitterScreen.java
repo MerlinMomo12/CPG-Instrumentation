@@ -9,6 +9,7 @@ import com.simibubi.create.foundation.gui.widget.SelectionScrollInput;
 import net.createmod.catnip.gui.AbstractSimiScreen;
 import net.createmod.catnip.gui.element.GuiGameElement;
 
+import net.createmod.catnip.platform.CatnipServices;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -166,8 +167,8 @@ public class TransmitterScreen extends AbstractSimiScreen {
 
 
         // =========================
-        // Confirm Button
-        // =========================
+// Confirm Button
+// =========================
 
         confirmButton = new IconButton(
                 guiLeft + WIDTH - 33,
@@ -175,7 +176,41 @@ public class TransmitterScreen extends AbstractSimiScreen {
                 AllIcons.I_CONFIRM
         );
 
-        confirmButton.withCallback(() -> onClose());
+        confirmButton.withCallback(() -> {
+
+            // Aktuell ausgewählte Unit
+            int selectedUnitIndex = outputUnitInput.getState();
+
+            if (selectedUnitIndex < 0 ||
+                    selectedUnitIndex >= availableUnits.size()) {
+                return;
+            }
+
+            TransmitterUnit selectedUnit =
+                    availableUnits.get(selectedUnitIndex);
+
+            // Aktuelle Range-Werte
+            double selectedLowerRange =
+                    lowerRangeInput.getState();
+
+            double selectedUpperRange =
+                    upperRangeInput.getState();
+
+            // Packet erstellen
+            ConfigureTransmitterPacket packet =
+                    new ConfigureTransmitterPacket(
+                            blockEntity.getBlockPos(),
+                            selectedUnit,
+                            selectedLowerRange,
+                            selectedUpperRange
+                    );
+
+            // Zum Server schicken
+            CatnipServices.NETWORK.sendToServer(packet);
+
+            // Screen schließen
+            onClose();
+        });
 
         addRenderableWidget(confirmButton);
     }
