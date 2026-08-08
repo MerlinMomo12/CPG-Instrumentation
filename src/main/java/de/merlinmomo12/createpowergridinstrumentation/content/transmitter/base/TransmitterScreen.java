@@ -338,7 +338,7 @@ public class TransmitterScreen extends AbstractSimiScreen {
             GuiGameElement.of(renderedItem)
                     .<GuiGameElement.GuiRenderBuilder>at(
                             x + WIDTH + 6,
-                            y + HEIGHT - 56,
+                            y + HEIGHT - 110,
                             -200
                     )
                     .scale(5)
