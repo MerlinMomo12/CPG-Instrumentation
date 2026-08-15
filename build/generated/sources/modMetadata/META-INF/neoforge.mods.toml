@@ -69,7 +69,7 @@ versionRange="[6.0.10]"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.deinmodid]]
+[[dependencies.createpowergridinstrumentation]]
 modId="powergrid"
 mandatory=true
 versionRange="[0.5.5.1,)"

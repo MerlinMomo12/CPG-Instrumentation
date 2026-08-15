@@ -65,11 +65,11 @@ Example mod description.
 [[dependencies.createpowergridinstrumentation]]
 modId="create"
 type="required"
-versionRange="[6.0.10]"
+versionRange="[6.0.10,)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.deinmodid]]
+[[dependencies.createpowergridinstrumentation]]
 modId="powergrid"
 mandatory=true
 versionRange="[0.5.5.1,)"
