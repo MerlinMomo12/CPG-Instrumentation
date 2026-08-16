@@ -21,6 +21,12 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
     protected TransmitterUnit outputUnit;
     protected double lowerRange;
     protected double upperRange;
+    protected int getTerminalCount() {
+        return 2;
+    }
+
+    protected void buildMeasurementCircuit(CircuitBuilder builder) {
+    }
 
 
     protected abstract double getMeasurement();
@@ -168,7 +174,7 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
 
     @Override
     public void buildCircuit(CircuitBuilder builder) {
-        builder.setTerminalCount(2);
+        builder.setTerminalCount(getTerminalCount());
 
         wire = new CurrentSinkWire(
                 builder.terminalNode(0),
@@ -176,5 +182,7 @@ public abstract class AbstractTransmitterBlockEntity extends ElectricBlockEntity
         );
 
         builder.add(wire);
+
+        buildMeasurementCircuit(builder);
     }
 }
