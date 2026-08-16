@@ -1,12 +1,18 @@
 {
 
   "block.createpowergridinstrumentation.temperature_transmitter": "Temperature Transmitter",
+  "block.createpowergridinstrumentation.current_transmitter": "Current Transmitter",
+  "block.createpowergridinstrumentation.voltage_transmitter": "Voltage Transmitter",
 
 
 
 
   "creativetab.mcreatepowergridinstrumentation.instrument_item_tab": "CPG: Instrumentation",
   "transmitter.type.temperature": "Temperature Transmitter",
+  "transmitter.type.voltage": "Voltage Transmitter",
+  "transmitter.type.current": "Current Transmitter",
+  "block.createpowergridinstrumentation.voltage_transmitter.tooltip.summary": "Converts a Voltage into a Current-Throughput",
+  "block.createpowergridinstrumentation.current_transmitter.tooltip.summary": "Converts a Current into a Current-Throughput",
   "block.createpowergridinstrumentation.temperature_transmitter.tooltip.summary": "Converts a Temperature into a Current-Throughput"
 
 

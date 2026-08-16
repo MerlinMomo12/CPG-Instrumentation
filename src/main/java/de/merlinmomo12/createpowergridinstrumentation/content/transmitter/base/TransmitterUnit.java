@@ -21,7 +21,28 @@ public enum TransmitterUnit {
             TransmitterType.TEMPERATURE,
             "°F",
             value -> value * 9 / 5 + 32
+    ),
+    VOLTAGE(
+            TransmitterType.VOLTAGE,
+            "V",
+            value -> value
+    ),
+    MILLIVOLTAGE(
+            TransmitterType.VOLTAGE,
+            "mV",
+            value -> value * 1000.0
+    ),
+    CURRENT(
+            TransmitterType.CURRENT,
+            "A",
+            value -> value
+    ),
+    MILLIAMPERE(
+            TransmitterType.CURRENT,
+            "mA",
+            value -> value * 1000.0
     );
+
 
 
     private final TransmitterType type;
